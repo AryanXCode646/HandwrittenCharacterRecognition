@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing & linting
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Data & model artifacts
+data/*
+!data/.gitkeep
+!data/README.md
+models/*
+!models/.gitkeep
+
+# OS & IDE
+.DS_Store
+.vscode/
+.idea/
+*.log

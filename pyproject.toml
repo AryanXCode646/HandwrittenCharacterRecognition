@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codealpha-handwritten-recognition"
+version = "0.1.0"
+description = "Handwritten Digit Recognition CNN on MNIST (CodeAlpha ML Internship)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2,<3.0",
+    "torchvision>=0.17,<1.0",
+    "numpy>=1.26,<3.0",
+    "scikit-learn>=1.4,<2.0",
+    "matplotlib>=3.8,<4.0",
+    "pillow>=10.0,<14.0",
+    "streamlit>=1.35,<2.0",
+    "streamlit-drawable-canvas>=0.9,<1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "integration: marks tests that require downloading MNIST or running full training",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
