@@ -1,15 +1,17 @@
-# Handwritten Character Recognition (MNIST CNN) — CodeAlpha ML Internship (Task 3)
+# Handwritten Character Recognition (MNIST CNN)
+
+A CPU-friendly handwritten digit recognition application built with PyTorch and Convolutional Neural Networks (CNNs). It classifies grayscale handwritten digits (0–9) and includes reproducible training, validation, testing, and an interactive Streamlit drawing/upload interface.
 
 ## Problem Statement & Objectives
 
-Classify 28×28 grayscale handwritten digits (`0`–`9`) using a CPU-friendly PyTorch Convolutional Neural Network (CNN) with reproducible training/validation/test workflows, overfitting controls, per-class evaluation, and an interactive Streamlit drawing/upload UI.
+Classify 28×28 grayscale handwritten digits (0–9) using a CPU-friendly PyTorch Convolutional Neural Network (CNN), with reproducible training/validation/test workflows, overfitting controls, per-class evaluation, and an interactive Streamlit drawing/upload UI.
 
 ## Dataset
 
-- **Name**: MNIST (Modified National Institute of Standards and Technology)
-- **Source**: Yann LeCun et al. via `torchvision.datasets.MNIST`
-- **Size**: 60,000 training images + 10,000 test images (28×28 grayscale, 10 classes)
-- **Splits**: 54,000 train / 6,000 validation (`seed=42`) / 10,000 held-out test
+- **Name:** MNIST (Modified National Institute of Standards and Technology)
+- **Source:** Yann LeCun et al. via `torchvision.datasets.MNIST`
+- **Size:** 60,000 training images + 10,000 test images (28×28 grayscale, 10 classes)
+- **Splits:** 54,000 training / 6,000 validation (`seed=42`) / 10,000 held-out test
 
 ## Technology Stack
 
@@ -22,9 +24,10 @@ Classify 28×28 grayscale handwritten digits (`0`–`9`) using a CPU-friendly Py
 ## Repository Structure
 
 ```text
-CodeAlpha_HandwrittenCharacterRecognition/
+HandwrittenCharacterRecognition/
 ├── app.py                     # Interactive Streamlit drawing & upload UI
-├── configs/config.json        # Dataset, training, and evaluation configuration
+├── configs/
+│   └── config.json            # Dataset, training, and evaluation configuration
 ├── data/                      # MNIST download directory (gitignored)
 ├── models/                    # Saved DigitCNN weights (gitignored)
 ├── reports/
@@ -79,17 +82,21 @@ streamlit run app.py
 
 ## CNN Architecture (`DigitCNN`)
 
-- **Block 1**: `Conv2d(1 → 32, 3×3, padding=1)` → `BatchNorm2d(32)` → `ReLU` → `MaxPool2d(2)`
-- **Block 2**: `Conv2d(32 → 64, 3×3, padding=1)` → `BatchNorm2d(64)` → `ReLU` → `MaxPool2d(2)` → `Dropout2d(0.25)`
-- **Classifier**: `Flatten` → `Linear(3136 → 128)` → `ReLU` → `Dropout(0.4)` → `Linear(128 → 10)`
+- **Block 1:** `Conv2d(1 → 32, 3×3, padding=1)` → `BatchNorm2d(32)` → `ReLU` → `MaxPool2d(2)`
+- **Block 2:** `Conv2d(32 → 64, 3×3, padding=1)` → `BatchNorm2d(64)` → `ReLU` → `MaxPool2d(2)` → `Dropout2d(0.25)`
+- **Classifier:** `Flatten` → `Linear(3136 → 128)` → `ReLU` → `Dropout(0.4)` → `Linear(128 → 10)`
 
-## Actual Evaluation Results (Held-Out MNIST Test Set, `n=10,000`)
+## Actual Evaluation Results
 
-- **Test Accuracy**: `0.9883` (98.83%)
-- **Macro Precision**: `0.9882`
-- **Macro Recall**: `0.9882`
-- **Macro F1-Score**: `0.9882`
-- **Weighted F1-Score**: `0.9883`
+**Held-Out MNIST Test Set (`n=10,000`)**
+
+| Metric | Result |
+|---|---:|
+| Test Accuracy | **98.83%** |
+| Macro Precision | 0.9882 |
+| Macro Recall | 0.9882 |
+| Macro F1-Score | 0.9882 |
+| Weighted F1-Score | 0.9883 |
 
 See [reports/model_evaluation.md](reports/model_evaluation.md) and `reports/figures/` for training curves, confusion matrix, and sample predictions.
 
@@ -103,9 +110,11 @@ ruff format --check .
 
 ## Limitations & Future Improvements
 
-- Trained on centered 28×28 digits (`0`–`9`) only; arbitrary camera photos may require cropping/deskewing.
-- Extendable to letters via EMNIST or full word/sentence recognition via CRNN + CTC loss.
+- Currently trained on centered 28×28 handwritten digits (0–9) only. Arbitrary camera photos may require cropping and deskewing.
+- Can be extended to handwritten letter recognition using EMNIST.
+- Full word and sentence recognition could be explored using CRNN architectures with CTC loss.
 
 ## Author
 
-**Aryan Saxena** — CodeAlpha Machine Learning Internship
+**Aryan Saxena**
+
